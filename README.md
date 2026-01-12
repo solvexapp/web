@@ -1,36 +1,83 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Solvex Web
 
-## Getting Started
+Sitio web de Solvex (marketing + contacto), construido con **Next.js (App Router)** y desplegado en un VPS con **Docker + Nginx**.
 
-First, run the development server:
+## Stack
+- Next.js (App Router)
+- React
+- Tailwind CSS
+- Node.js 20
+- Docker / Docker Compose
+- Nginx (reverse proxy)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
+## Requisitos
+### Desarrollo local
+- Node.js 20+
+- pnpm (recomendado)
+
+### Producción
+- Docker
+- Docker Compose
+
+## Desarrollo local
+
+Instalar dependencias:
+
+pnpm install
+
+Levantar servidor de desarrollo:
+
 pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir en el navegador:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Producción (VPS)
 
-## Learn More
+El sitio corre como contenedor Node detrás de Nginx.
 
-To learn more about Next.js, take a look at the following resources:
+Desde el VPS:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+cd ~/solvex/infra
+docker compose up -d web
+docker compose logs -f web
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Nginx actúa como reverse proxy hacia el servicio `web` en el puerto 3000.
 
-## Deploy on Vercel
+## Variables de entorno
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Configuradas vía `docker-compose.yml`:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- NEXT_PUBLIC_WHATSAPP_NUMBER
+
+## Estructura del proyecto
+
+apps/web
+- app/
+  - page.tsx           Landing principal
+  - layout.tsx         Layout raíz
+  - globals.css        Estilos globales
+  - api/contact        Endpoint de contacto
+- public/              Assets estáticos
+- next.config.ts
+- tsconfig.json
+
+## Endpoint de contacto
+
+POST /api/contact
+
+Actualmente:
+- Recibe datos del formulario
+- Loguea el mensaje (placeholder)
+
+## Deployment
+
+El deploy se realiza por pull + restart del contenedor:
+
+git pull
+docker compose up -d web
+
+## Licencia
+
+© Solvex. Uso interno.
