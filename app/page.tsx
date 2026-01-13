@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "54911XXXXXXXX";
@@ -21,12 +22,20 @@ export default function Home() {
       <header className="sticky top-0 z-30 border-b border-zinc-100 bg-white/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-2">
-            <div className="h-8 w-8 rounded-xl border border-zinc-200 bg-gradient-to-br from-zinc-50 to-zinc-200" />
-            <span className="font-semibold tracking-tight">Solvex</span>
+            <Image
+              src="/solvex-logo.svg"
+              alt="Solvex"
+              width={220}
+              height={48}
+              className="h-8 w-auto"
+              priority
+            />
           </div>
           <nav className="hidden items-center gap-6 text-sm text-zinc-600 md:flex">
             <a href="#servicios" className="hover:text-zinc-900">Servicios</a>
+            <a href="#productos" className="hover:text-zinc-900">Productos</a>
             <a href="#proceso" className="hover:text-zinc-900">Proceso</a>
+            <a href="#resultados" className="hover:text-zinc-900">Resultados</a>
             <a href="#contacto" className="hover:text-zinc-900">Contacto</a>
           </nav>
           <div className="flex items-center gap-2">
@@ -51,10 +60,10 @@ export default function Home() {
         <div className="grid gap-10 md:grid-cols-2 md:items-center">
           <div>
             <p className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs text-zinc-600">
-              Software factory · Integraciones · Asesoramiento de sistemas
+              Software factory · Integraciones · Consultoría tecnológica
             </p>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
-              Implementamos e integramos sistemas para que tu empresa opere sin fricción.
+              Soluciones tecnológicas que ordenan tu operación y escalan tu negocio.
             </h1>
             <p className="mt-4 text-base text-zinc-600 md:text-lg">
               ERP/CRM, integraciones API, automatización y data. Entregas por hitos, documentación y soporte real.
@@ -127,6 +136,46 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="productos" className="border-t border-zinc-100">
+        <div className="mx-auto max-w-6xl px-4 py-16">
+          <SectionTitle
+            kicker="Productos"
+            title="Herramientas propias para acelerar integraciones"
+            subtitle="Componentes listos para operar y adaptarse a tu stack."
+          />
+
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {[
+              {
+                title: "Solvex Connect",
+                desc: "Conectores prearmados para ERP, eCommerce, pagos y logística.",
+                items: ["Catálogo de conectores", "Monitoreo de integraciones", "Versionado de endpoints"],
+              },
+              {
+                title: "Solvex Pulse",
+                desc: "Observabilidad operativa para tener SLA claros y alertas accionables.",
+                items: ["Dashboards de procesos", "Alertas en tiempo real", "Auditoría y trazas"],
+              },
+              {
+                title: "Solvex Automate",
+                desc: "Automatización no-code/low-code con validaciones y aprobaciones.",
+                items: ["Workflows con reglas", "Gestión de tareas", "Integraciones seguras"],
+              },
+            ].map((p) => (
+              <div key={p.title} className="rounded-3xl border border-zinc-100 bg-white p-6 shadow-sm">
+                <h3 className="text-lg font-semibold">{p.title}</h3>
+                <p className="mt-2 text-sm text-zinc-600">{p.desc}</p>
+                <ul className="mt-4 space-y-2 text-sm text-zinc-600">
+                  {p.items.map((item) => (
+                    <li key={item}>• {item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="proceso" className="border-t border-zinc-100">
         <div className="mx-auto max-w-6xl px-4 py-16">
           <SectionTitle
@@ -146,6 +195,43 @@ export default function Home() {
                 <div className="text-xs font-medium text-zinc-500">{p.n}</div>
                 <div className="mt-2 text-base font-semibold">{p.title}</div>
                 <div className="mt-2 text-sm text-zinc-600">{p.desc}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="resultados" className="border-t border-zinc-100 bg-zinc-50/40">
+        <div className="mx-auto max-w-6xl px-4 py-16">
+          <SectionTitle
+            kicker="Resultados"
+            title="Impacto medible en operación y data"
+            subtitle="Benchmarks típicos tras las primeras 8-12 semanas."
+          />
+
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {[
+              { value: "40%", label: "menos tiempo en tareas manuales" },
+              { value: "3x", label: "mejoras en visibilidad de stock y ventas" },
+              { value: "99.5%", label: "disponibilidad en procesos críticos" },
+            ].map((r) => (
+              <div key={r.label} className="rounded-3xl border border-zinc-100 bg-white p-6 text-center shadow-sm">
+                <div className="text-3xl font-semibold text-zinc-900">{r.value}</div>
+                <div className="mt-2 text-sm text-zinc-600">{r.label}</div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 grid gap-4 md:grid-cols-4">
+            {[
+              { title: "Retail & eCommerce", desc: "Ventas, inventario, fulfillment y BI en un solo flujo." },
+              { title: "Servicios B2B", desc: "Onboarding, facturación recurrente y soporte conectado." },
+              { title: "Manufactura ligera", desc: "Producción, compras y trazabilidad de insumos." },
+              { title: "Logística", desc: "Ruteo, tracking y performance en tiempo real." },
+            ].map((s) => (
+              <div key={s.title} className="rounded-3xl border border-zinc-100 bg-white p-5">
+                <div className="text-sm font-semibold text-zinc-900">{s.title}</div>
+                <div className="mt-2 text-sm text-zinc-600">{s.desc}</div>
               </div>
             ))}
           </div>
@@ -229,7 +315,9 @@ export default function Home() {
           <div>© {new Date().getFullYear()} Solvex</div>
           <div className="flex gap-4">
             <a className="hover:text-zinc-900" href="#servicios">Servicios</a>
+            <a className="hover:text-zinc-900" href="#productos">Productos</a>
             <a className="hover:text-zinc-900" href="#proceso">Proceso</a>
+            <a className="hover:text-zinc-900" href="#resultados">Resultados</a>
             <a className="hover:text-zinc-900" href="#contacto">Contacto</a>
           </div>
         </div>
