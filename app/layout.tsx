@@ -36,6 +36,9 @@ export const metadata: Metadata = {
     description:
       "Integraciones, ERP/CRM, automatización y data para empresas.",
   },
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
