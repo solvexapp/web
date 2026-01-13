@@ -1,43 +1,41 @@
 name: CI
 
 on:
-
   pull_request:
-
-    branches: ["*"]
+    branches: [ "*" ]
+  push:
+    branches: [ "main" ]
 
 jobs:
-
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-
       - name: Checkout
-
         uses: actions/checkout@v4
-
       - name: Setup Node
-
         uses: actions/setup-node@v4
-
         with:
-
           node-version: 20
-
       - name: Enable corepack
-
         run: corepack enable
-
       - name: Activate pnpm
-
         run: corepack prepare pnpm@9 --activate
-
       - name: Install dependencies
-
         run: pnpm install --frozen-lockfile
-
       - name: Build
-
         run: pnpm build
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Rebuild and restart services
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            cd /home/solvex/infra
+            docker compose up -d --build
