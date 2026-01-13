@@ -53,13 +53,13 @@ Configuradas vía `docker-compose.yml`:
 
 ## Estructura del proyecto
 
-apps/web
+/
 - app/
   - page.tsx           Landing principal
   - layout.tsx         Layout raíz
   - globals.css        Estilos globales
   - api/contact        Endpoint de contacto
-- public/              Assets estáticos
+- public/              Assets estáticos (incluye `solvex-logo.svg`, `solvex-mark.svg` y `favicon.svg`)
 - next.config.ts
 - tsconfig.json
 
