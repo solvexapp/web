@@ -1,26 +1,74 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f4f1ea;
+  --foreground: #1f1d1a;
+  --ink: #1f1d1a;
+  --paper: #fcfbf9;
+  --muted: #6f6a62;
+  --accent: #d1632a;
+  --accent-strong: #a94920;
+  --mint: #0f766e;
+  --shadow: 0 20px 60px -35px rgba(37, 32, 26, 0.35);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-plex-mono);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #f4f1ea;
+    --foreground: #1f1d1a;
   }
 }
 
 body {
-  background: var(--background);
+  background: radial-gradient(circle at top, #fff6e8 0%, #f4f1ea 45%, #f1ebe0 100%);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), "Space Grotesk", system-ui, sans-serif;
+}
+
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  opacity: 0.25;
+  mix-blend-mode: multiply;
+}
+
+.shadow-soft {
+  box-shadow: var(--shadow);
+}
+
+.animate-float {
+  animation: float 10s ease-in-out infinite;
+}
+
+.animate-reveal {
+  animation: reveal 900ms ease-out both;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

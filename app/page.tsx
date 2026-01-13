@@ -7,9 +7,9 @@ const WHATSAPP_TEXT = encodeURIComponent("Hola! Quiero hablar sobre integracione
 function SectionTitle({ kicker, title, subtitle }: { kicker?: string; title: string; subtitle?: string }) {
   return (
     <div className="mx-auto max-w-3xl text-center">
-      {kicker ? <p className="text-sm font-medium text-zinc-500">{kicker}</p> : null}
-      <h2 className="mt-2 text-3xl font-semibold tracking-tight text-zinc-900">{title}</h2>
-      {subtitle ? <p className="mt-3 text-base text-zinc-600">{subtitle}</p> : null}
+      {kicker ? <p className="text-sm font-medium text-[var(--muted)]">{kicker}</p> : null}
+      <h2 className="mt-2 text-3xl font-semibold tracking-tight text-[var(--ink)]">{title}</h2>
+      {subtitle ? <p className="mt-3 text-base text-[var(--muted)]">{subtitle}</p> : null}
     </div>
   );
 }
@@ -18,8 +18,15 @@ export default function Home() {
   const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_TEXT}`;
 
   return (
-    <main className="min-h-screen bg-white text-zinc-900">
-      <header className="sticky top-0 z-30 border-b border-zinc-100 bg-white/80 backdrop-blur">
+    <main className="relative min-h-screen text-[var(--ink)]">
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute -left-24 top-16 h-72 w-72 rounded-full bg-[var(--accent)]/10 blur-3xl" />
+        <div className="absolute right-8 top-32 h-64 w-64 rounded-full bg-[var(--mint)]/12 blur-3xl" />
+        <div className="absolute bottom-0 left-1/3 h-80 w-80 rounded-full bg-amber-200/30 blur-[90px]" />
+        <div className="grain absolute inset-0" />
+      </div>
+
+      <header className="sticky top-0 z-30 border-b border-black/5 bg-[var(--paper)]/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
           <div className="flex items-center gap-2">
             <Image
@@ -31,24 +38,26 @@ export default function Home() {
               priority
             />
           </div>
-          <nav className="hidden items-center gap-6 text-sm text-zinc-600 md:flex">
-            <a href="#servicios" className="hover:text-zinc-900">Servicios</a>
-            <a href="#productos" className="hover:text-zinc-900">Productos</a>
-            <a href="#proceso" className="hover:text-zinc-900">Proceso</a>
-            <a href="#resultados" className="hover:text-zinc-900">Resultados</a>
-            <a href="#contacto" className="hover:text-zinc-900">Contacto</a>
+          <nav className="hidden items-center gap-6 text-sm text-[var(--muted)] md:flex">
+            <a href="#servicios" className="hover:text-[var(--ink)]">Servicios</a>
+            <a href="#propuesta" className="hover:text-[var(--ink)]">Propuesta</a>
+            <a href="#inicio" className="hover:text-[var(--ink)]">Como empezamos</a>
+            <a href="#productos" className="hover:text-[var(--ink)]">Productos</a>
+            <a href="#proceso" className="hover:text-[var(--ink)]">Proceso</a>
+            <a href="#resultados" className="hover:text-[var(--ink)]">Resultados</a>
+            <a href="#contacto" className="hover:text-[var(--ink)]">Contacto</a>
           </nav>
           <div className="flex items-center gap-2">
             <Link
               href={waHref}
               target="_blank"
-              className="rounded-xl border border-zinc-200 px-3 py-2 text-sm font-medium hover:bg-zinc-50"
+              className="rounded-xl border border-black/10 px-3 py-2 text-sm font-medium hover:bg-white/60"
             >
               WhatsApp
             </Link>
             <a
               href="#contacto"
-              className="rounded-xl bg-zinc-900 px-3 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+              className="rounded-xl bg-[var(--ink)] px-3 py-2 text-sm font-medium text-[var(--paper)] hover:bg-black"
             >
               Contactar
             </a>
@@ -57,86 +66,238 @@ export default function Home() {
       </header>
 
       <section className="mx-auto max-w-6xl px-4 py-16 md:py-24">
-        <div className="grid gap-10 md:grid-cols-2 md:items-center">
-          <div>
-            <p className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs text-zinc-600">
-              Software factory · Integraciones · Consultoría tecnológica
+        <div className="grid gap-12 md:grid-cols-[1.05fr_0.95fr] md:items-center">
+          <div className="animate-reveal">
+            <p className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1 text-xs text-[var(--muted)]">
+              Software factory · Integraciones · Operaciones críticas
             </p>
-            <h1 className="mt-4 text-4xl font-semibold tracking-tight md:text-5xl">
-              Soluciones tecnológicas que ordenan tu operación y escalan tu negocio.
+            <h1 className="mt-4 text-4xl font-semibold tracking-tight md:text-6xl">
+              Integraciones y plataformas que ordenan tu operación y escalan tu negocio.
             </h1>
-            <p className="mt-4 text-base text-zinc-600 md:text-lg">
-              ERP/CRM, integraciones API, automatización y data. Entregas por hitos, documentación y soporte real.
+            <p className="mt-4 text-base text-[var(--muted)] md:text-lg">
+              Alineamos ERP, CRM, eCommerce y logística en un solo flujo. Delivery por hitos, arquitectura clara
+              y observabilidad real desde el primer deploy.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a
                 href="#contacto"
-                className="inline-flex items-center justify-center rounded-xl bg-zinc-900 px-4 py-3 text-sm font-medium text-white hover:bg-zinc-800"
+                className="inline-flex items-center justify-center rounded-xl bg-[var(--ink)] px-4 py-3 text-sm font-medium text-[var(--paper)] hover:bg-black"
               >
-                Hablemos hoy
+                Coordinar diagnóstico
               </a>
               <Link
                 href={waHref}
                 target="_blank"
-                className="inline-flex items-center justify-center rounded-xl border border-zinc-200 px-4 py-3 text-sm font-medium hover:bg-zinc-50"
+                className="inline-flex items-center justify-center rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm font-medium hover:bg-white"
               >
                 Escribinos por WhatsApp
               </Link>
             </div>
+            <div className="mt-6 flex flex-wrap gap-4 text-xs text-[var(--muted)]">
+              <span className="rounded-full border border-black/10 bg-white/70 px-3 py-1">Integraciones seguras</span>
+              <span className="rounded-full border border-black/10 bg-white/70 px-3 py-1">SLA y monitoreo</span>
+              <span className="rounded-full border border-black/10 bg-white/70 px-3 py-1">Migraciones sin corte</span>
+            </div>
           </div>
 
-          <div className="rounded-3xl border border-zinc-100 bg-gradient-to-b from-zinc-50 to-white p-6 shadow-sm">
-            <div className="rounded-2xl border border-zinc-200 bg-white p-5">
-              <p className="text-sm font-medium text-zinc-900">Lo que resolvemos</p>
-              <ul className="mt-3 space-y-2 text-sm text-zinc-600">
+          <div className="animate-reveal rounded-[28px] border border-black/10 bg-[var(--paper)] p-6 shadow-soft">
+            <div className="rounded-2xl border border-black/10 bg-white p-5">
+              <p className="text-sm font-medium text-[var(--ink)]">Lo que resolvemos</p>
+              <ul className="mt-3 space-y-2 text-sm text-[var(--muted)]">
                 <li>• Conectar ERP ↔ CRM ↔ eCommerce ↔ logística</li>
-                <li>• Unificar datos y reporting (BI)</li>
-                <li>• Automatizar aprobaciones y tareas repetitivas</li>
-                <li>• Migraciones y modernización sin cortar la operación</li>
+                <li>• Consolidar data para BI y reporting operativo</li>
+                <li>• Automatizar aprobaciones, conciliaciones y alertas</li>
+                <li>• Modernizar servicios sin cortar la operación</li>
               </ul>
-              <p className="mt-5 text-xs text-zinc-500">Menos planillas. Más visibilidad.</p>
+              <p className="mt-5 text-xs text-[var(--muted)]">Menos planillas. Más visibilidad.</p>
             </div>
-            <div className="mt-4 rounded-2xl border border-zinc-200 bg-white p-5">
-              <p className="text-sm font-medium text-zinc-900">Stack típico</p>
+            <div className="mt-4 rounded-2xl border border-black/10 bg-white p-5">
+              <p className="text-sm font-medium text-[var(--ink)]">Stack de entrega</p>
               <div className="mt-3 flex flex-wrap gap-2 text-xs">
-                {["Node.js", "Python", "PostgreSQL", "Docker", "AWS", "n8n", "REST/GraphQL", "Queues"].map((t) => (
-                  <span key={t} className="rounded-full border border-zinc-200 px-3 py-1 text-zinc-600">
+                {["APIs", "PostgreSQL", "Docker", "Kafka", "Redis", "AWS", "REST/GraphQL", "n8n"].map((t) => (
+                  <span key={t} className="rounded-full border border-black/10 px-3 py-1 text-[var(--muted)]">
                     {t}
                   </span>
                 ))}
               </div>
             </div>
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
+              {[
+                { label: "Tiempo de entrega", value: "2-4 semanas" },
+                { label: "Quick wins", value: "En la primera iteración" },
+              ].map((item) => (
+                <div key={item.label} className="rounded-2xl border border-black/10 bg-white p-4 text-sm">
+                  <div className="text-xs text-[var(--muted)]">{item.label}</div>
+                  <div className="mt-2 text-base font-semibold text-[var(--ink)]">{item.value}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="servicios" className="border-t border-zinc-100 bg-zinc-50/40">
+      <section id="servicios" className="border-t border-black/5 bg-white/60">
         <div className="mx-auto max-w-6xl px-4 py-16">
           <SectionTitle
             kicker="Servicios"
             title="Hacemos que tus sistemas trabajen juntos"
-            subtitle="Solución simple, mantenible y con trazabilidad."
+            subtitle="Arquitectura simple, mantenible y con trazabilidad."
           />
 
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {[
-              { title: "Integraciones", desc: "APIs, ETL, webhooks, colas y eventos. Con logs y alertas." },
-              { title: "ERP / CRM", desc: "Implementación, customizaciones, flujos, permisos, capacitación." },
-              { title: "Automatización", desc: "Workflows, tareas repetitivas, aprobaciones, conciliaciones." },
-              { title: "Data & Reporting", desc: "Modelos, dashboards, métricas, calidad de datos." },
-              { title: "Desarrollo a medida", desc: "Portales, backoffice, microservicios, integradores." },
+              { title: "Integraciones críticas", desc: "APIs, ETL, webhooks, colas y eventos. Logging y alertas." },
+              { title: "Plataformas a medida", desc: "Servicios resilientes, seguros y listos para escalar." },
+              { title: "ERP / CRM", desc: "Implementación, customizaciones, flujos y capacitación." },
+              { title: "Automatización", desc: "Workflows, aprobaciones, conciliaciones y QA de datos." },
+              { title: "Data & Observabilidad", desc: "Métricas, dashboards, trazas y data contracts." },
               { title: "Diagnóstico", desc: "Auditoría técnica + roadmap priorizado por impacto." },
             ].map((s) => (
-              <div key={s.title} className="rounded-3xl border border-zinc-100 bg-white p-6 shadow-sm">
+              <div key={s.title} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 shadow-soft">
                 <h3 className="text-lg font-semibold">{s.title}</h3>
-                <p className="mt-2 text-sm text-zinc-600">{s.desc}</p>
+                <p className="mt-2 text-sm text-[var(--muted)]">{s.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="productos" className="border-t border-zinc-100">
+      <section id="propuesta" className="border-t border-black/5">
+        <div className="mx-auto max-w-6xl px-4 py-16">
+          <SectionTitle
+            kicker="Propuesta"
+            title="Una capa única para coordinar operaciones"
+            subtitle="Diseñamos el flujo de datos y lo operamos con precisión."
+          />
+
+          <div className="mt-10 grid gap-4 md:grid-cols-[1.15fr_0.85fr]">
+            <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-soft">
+              <p className="text-sm font-semibold text-[var(--ink)]">Lo que incluimos en cada entrega</p>
+              <div className="mt-4 grid gap-4 md:grid-cols-2">
+                {[
+                  { title: "Mapa de sistemas", desc: "Inventario, dueños y puntos de falla." },
+                  { title: "Contratos de datos", desc: "Esquemas claros, versionados y auditables." },
+                  { title: "Observabilidad", desc: "Métricas, trazas y alertas accionables." },
+                  { title: "Arquitectura escalable", desc: "Servicios listos para crecer sin deuda." },
+                ].map((item) => (
+                  <div key={item.title} className="rounded-2xl border border-black/10 bg-[var(--paper)] p-4">
+                    <div className="text-sm font-semibold text-[var(--ink)]">{item.title}</div>
+                    <div className="mt-2 text-xs text-[var(--muted)]">{item.desc}</div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 rounded-2xl border border-black/10 bg-[var(--paper)] p-4 text-sm text-[var(--muted)]">
+                Entregamos con documentación viva y un handover real: diagramas, runbooks y ownership claro.
+              </div>
+            </div>
+
+            <div className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 shadow-soft">
+              <p className="text-sm font-semibold text-[var(--ink)]">Qué ganás</p>
+              <ul className="mt-4 space-y-3 text-sm text-[var(--muted)]">
+                <li>• Menos retrabajo entre equipos.</li>
+                <li>• Flujo de datos confiable y auditado.</li>
+                <li>• Operaciones rápidas ante cambios.</li>
+                <li>• Plataforma preparada para escalar.</li>
+              </ul>
+              <div className="mt-6 rounded-2xl border border-black/10 bg-white p-4">
+                <p className="text-xs text-[var(--muted)]">Tiempo típico de onboarding</p>
+                <p className="mt-2 text-lg font-semibold text-[var(--ink)]">10-15 días</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="inicio" className="border-t border-black/5 bg-white/60">
+        <div className="mx-auto max-w-6xl px-4 py-16">
+          <SectionTitle
+            kicker="Como empezamos"
+            title="Alineamos negocio y tecnologia desde el dia uno"
+            subtitle="Un camino claro para pasar de diagnostico a entregas sostenibles."
+          />
+
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {[
+              {
+                step: "Etapa 1",
+                title: "Diagnostico & roadmap",
+                desc: "Auditamos sistemas, definimos el backlog y priorizamos quick wins con impacto real.",
+                items: ["Mapa de sistemas", "Dolores y cuellos", "Plan 90 dias"],
+              },
+              {
+                step: "Etapa 2",
+                title: "MVP operativo",
+                desc: "Construimos la primera integracion o flujo critico con monitoreo y QA.",
+                items: ["Primera integracion", "Data contracts", "Alertas y trazas"],
+              },
+              {
+                step: "Etapa 3",
+                title: "Escalado & producto",
+                desc: "Expandimos conectores, automatizaciones y dashboards para sostener el crecimiento.",
+                items: ["Nuevos endpoints", "Automatizacion", "Documentacion viva"],
+              },
+            ].map((stage) => (
+              <div key={stage.title} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 shadow-soft">
+                <div className="text-xs font-medium text-[var(--muted)]">{stage.step}</div>
+                <div className="mt-2 text-lg font-semibold text-[var(--ink)]">{stage.title}</div>
+                <div className="mt-2 text-sm text-[var(--muted)]">{stage.desc}</div>
+                <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
+                  {stage.items.map((item) => (
+                    <li key={item}>• {item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {[
+              {
+                title: "Diagnostico puntual",
+                desc: "Ideal para alinear objetivos y destrabar un cuello urgente.",
+                items: ["1-2 semanas", "Insights accionables", "Roadmap priorizado"],
+              },
+              {
+                title: "Implementacion iterativa",
+                desc: "Construccion por sprints con entregas visibles cada 2-3 semanas.",
+                items: ["Backlog activo", "KPIs de progreso", "Handover real"],
+              },
+              {
+                title: "Acompanamiento continuo",
+                desc: "Equipo extendido para evolucionar integraciones y data.",
+                items: ["Monitoreo y soporte", "Mejoras continuas", "Métricas operativas"],
+              },
+            ].map((plan) => (
+              <div key={plan.title} className="rounded-3xl border border-black/10 bg-white p-6 shadow-soft">
+                <div className="text-sm font-semibold text-[var(--ink)]">{plan.title}</div>
+                <div className="mt-2 text-sm text-[var(--muted)]">{plan.desc}</div>
+                <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
+                  {plan.items.map((item) => (
+                    <li key={item}>• {item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 rounded-3xl border border-black/10 bg-white p-6 shadow-soft md:flex md:items-center md:justify-between">
+            <div>
+              <p className="text-sm font-semibold text-[var(--ink)]">Primer paso recomendado</p>
+              <p className="mt-2 text-sm text-[var(--muted)]">
+                Un diagnostico corto para alinear objetivos, tiempos y riesgos antes de construir.
+              </p>
+            </div>
+            <a
+              href="#contacto"
+              className="mt-4 inline-flex items-center justify-center rounded-xl bg-[var(--ink)] px-4 py-3 text-sm font-medium text-[var(--paper)] hover:bg-black md:mt-0"
+            >
+              Agendar diagnostico
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="productos" className="border-t border-black/5">
         <div className="mx-auto max-w-6xl px-4 py-16">
           <SectionTitle
             kicker="Productos"
@@ -162,10 +323,10 @@ export default function Home() {
                 items: ["Workflows con reglas", "Gestión de tareas", "Integraciones seguras"],
               },
             ].map((p) => (
-              <div key={p.title} className="rounded-3xl border border-zinc-100 bg-white p-6 shadow-sm">
+              <div key={p.title} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 shadow-soft">
                 <h3 className="text-lg font-semibold">{p.title}</h3>
-                <p className="mt-2 text-sm text-zinc-600">{p.desc}</p>
-                <ul className="mt-4 space-y-2 text-sm text-zinc-600">
+                <p className="mt-2 text-sm text-[var(--muted)]">{p.desc}</p>
+                <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
                   {p.items.map((item) => (
                     <li key={item}>• {item}</li>
                   ))}
@@ -176,7 +337,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="proceso" className="border-t border-zinc-100">
+      <section id="proceso" className="border-t border-black/5">
         <div className="mx-auto max-w-6xl px-4 py-16">
           <SectionTitle
             kicker="Proceso"
@@ -191,17 +352,17 @@ export default function Home() {
               { n: "03", title: "Implementación", desc: "Iteraciones cortas, QA, observabilidad." },
               { n: "04", title: "Go-live & Soporte", desc: "Monitoreo, documentación, mejoras continuas." },
             ].map((p) => (
-              <div key={p.n} className="rounded-3xl border border-zinc-100 bg-white p-6">
-                <div className="text-xs font-medium text-zinc-500">{p.n}</div>
+              <div key={p.n} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6">
+                <div className="text-xs font-medium text-[var(--muted)]">{p.n}</div>
                 <div className="mt-2 text-base font-semibold">{p.title}</div>
-                <div className="mt-2 text-sm text-zinc-600">{p.desc}</div>
+                <div className="mt-2 text-sm text-[var(--muted)]">{p.desc}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="resultados" className="border-t border-zinc-100 bg-zinc-50/40">
+      <section id="resultados" className="border-t border-black/5 bg-white/60">
         <div className="mx-auto max-w-6xl px-4 py-16">
           <SectionTitle
             kicker="Resultados"
@@ -215,9 +376,9 @@ export default function Home() {
               { value: "3x", label: "mejoras en visibilidad de stock y ventas" },
               { value: "99.5%", label: "disponibilidad en procesos críticos" },
             ].map((r) => (
-              <div key={r.label} className="rounded-3xl border border-zinc-100 bg-white p-6 text-center shadow-sm">
-                <div className="text-3xl font-semibold text-zinc-900">{r.value}</div>
-                <div className="mt-2 text-sm text-zinc-600">{r.label}</div>
+              <div key={r.label} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 text-center shadow-soft">
+                <div className="text-3xl font-semibold text-[var(--ink)]">{r.value}</div>
+                <div className="mt-2 text-sm text-[var(--muted)]">{r.label}</div>
               </div>
             ))}
           </div>
@@ -229,16 +390,16 @@ export default function Home() {
               { title: "Manufactura ligera", desc: "Producción, compras y trazabilidad de insumos." },
               { title: "Logística", desc: "Ruteo, tracking y performance en tiempo real." },
             ].map((s) => (
-              <div key={s.title} className="rounded-3xl border border-zinc-100 bg-white p-5">
-                <div className="text-sm font-semibold text-zinc-900">{s.title}</div>
-                <div className="mt-2 text-sm text-zinc-600">{s.desc}</div>
+              <div key={s.title} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-5">
+                <div className="text-sm font-semibold text-[var(--ink)]">{s.title}</div>
+                <div className="mt-2 text-sm text-[var(--muted)]">{s.desc}</div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="contacto" className="border-t border-zinc-100 bg-zinc-50/40">
+      <section id="contacto" className="border-t border-black/5 bg-white/60">
         <div className="mx-auto max-w-6xl px-4 py-16">
           <SectionTitle
             kicker="Contacto"
@@ -247,9 +408,9 @@ export default function Home() {
           />
 
           <div className="mt-10 grid gap-6 md:grid-cols-2">
-            <div className="rounded-3xl border border-zinc-100 bg-white p-6 shadow-sm">
+            <div className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 shadow-soft">
               <h3 className="text-lg font-semibold">Escribinos</h3>
-              <p className="mt-2 text-sm text-zinc-600">
+              <p className="mt-2 text-sm text-[var(--muted)]">
                 Sumá tu ERP/CRM actual y qué querés conectar (facturación, stock, ventas, logística).
               </p>
 
@@ -257,68 +418,70 @@ export default function Home() {
                 <Link
                   href={waHref}
                   target="_blank"
-                  className="inline-flex items-center justify-center rounded-xl bg-zinc-900 px-4 py-3 text-sm font-medium text-white hover:bg-zinc-800"
+                  className="inline-flex items-center justify-center rounded-xl bg-[var(--ink)] px-4 py-3 text-sm font-medium text-[var(--paper)] hover:bg-black"
                 >
                   Abrir WhatsApp
                 </Link>
                 <a
                   href="mailto:contacto@solvexapp.com"
-                  className="inline-flex items-center justify-center rounded-xl border border-zinc-200 px-4 py-3 text-sm font-medium hover:bg-zinc-50"
+                  className="inline-flex items-center justify-center rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm font-medium hover:bg-white"
                 >
                   contacto@solvexapp.com
                 </a>
               </div>
             </div>
 
-            <div className="rounded-3xl border border-zinc-100 bg-white p-6 shadow-sm">
+            <div className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 shadow-soft">
               <h3 className="text-lg font-semibold">Formulario</h3>
               <form method="POST" action="/api/contact" className="mt-4 space-y-3">
                 <input
                   name="name"
                   placeholder="Nombre"
-                  className="w-full rounded-xl border border-zinc-200 px-4 py-3 text-sm outline-none focus:border-zinc-400"
+                  className="w-full rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm outline-none focus:border-black/30"
                   required
                 />
                 <input
                   name="email"
                   type="email"
                   placeholder="Email"
-                  className="w-full rounded-xl border border-zinc-200 px-4 py-3 text-sm outline-none focus:border-zinc-400"
+                  className="w-full rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm outline-none focus:border-black/30"
                   required
                 />
                 <input
                   name="company"
                   placeholder="Empresa (opcional)"
-                  className="w-full rounded-xl border border-zinc-200 px-4 py-3 text-sm outline-none focus:border-zinc-400"
+                  className="w-full rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm outline-none focus:border-black/30"
                 />
                 <textarea
                   name="message"
                   placeholder="¿Qué querés integrar o mejorar?"
-                  className="h-28 w-full rounded-xl border border-zinc-200 px-4 py-3 text-sm outline-none focus:border-zinc-400"
+                  className="h-28 w-full rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm outline-none focus:border-black/30"
                   required
                 />
                 <button
                   type="submit"
-                  className="w-full rounded-xl bg-zinc-900 px-4 py-3 text-sm font-medium text-white hover:bg-zinc-800"
+                  className="w-full rounded-xl bg-[var(--ink)] px-4 py-3 text-sm font-medium text-[var(--paper)] hover:bg-black"
                 >
                   Enviar
                 </button>
               </form>
-              <p className="mt-3 text-xs text-zinc-500">Por ahora guarda el mensaje en logs.</p>
+              <p className="mt-3 text-xs text-[var(--muted)]">Por ahora guarda el mensaje en logs.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <footer className="border-t border-zinc-100">
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-10 text-sm text-zinc-600 md:flex-row md:items-center md:justify-between">
+      <footer className="border-t border-black/5">
+        <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-10 text-sm text-[var(--muted)] md:flex-row md:items-center md:justify-between">
           <div>© {new Date().getFullYear()} Solvex</div>
           <div className="flex gap-4">
-            <a className="hover:text-zinc-900" href="#servicios">Servicios</a>
-            <a className="hover:text-zinc-900" href="#productos">Productos</a>
-            <a className="hover:text-zinc-900" href="#proceso">Proceso</a>
-            <a className="hover:text-zinc-900" href="#resultados">Resultados</a>
-            <a className="hover:text-zinc-900" href="#contacto">Contacto</a>
+            <a className="hover:text-[var(--ink)]" href="#servicios">Servicios</a>
+            <a className="hover:text-[var(--ink)]" href="#propuesta">Propuesta</a>
+            <a className="hover:text-[var(--ink)]" href="#inicio">Como empezamos</a>
+            <a className="hover:text-[var(--ink)]" href="#productos">Productos</a>
+            <a className="hover:text-[var(--ink)]" href="#proceso">Proceso</a>
+            <a className="hover:text-[var(--ink)]" href="#resultados">Resultados</a>
+            <a className="hover:text-[var(--ink)]" href="#contacto">Contacto</a>
           </div>
         </div>
       </footer>
@@ -326,7 +489,7 @@ export default function Home() {
       <Link
         href={waHref}
         target="_blank"
-        className="fixed bottom-5 right-5 inline-flex items-center gap-2 rounded-full bg-zinc-900 px-4 py-3 text-sm font-medium text-white shadow-lg hover:bg-zinc-800"
+        className="fixed bottom-5 right-5 inline-flex items-center gap-2 rounded-full bg-[var(--ink)] px-4 py-3 text-sm font-medium text-[var(--paper)] shadow-soft hover:bg-black"
         aria-label="WhatsApp Solvex"
       >
         WhatsApp
