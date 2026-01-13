@@ -1,0 +1,38 @@
+<svg width="360" height="96" viewBox="0 0 360 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="solvexGreen" x1="20" y1="20" x2="76" y2="76" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2BD67B"/>
+      <stop offset="1" stop-color="#0F8A3C"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(8 8)">
+    <path
+      d="M61.8 14.5 85 27.2V53.6L61.8 66.3 53.6 61.6 69 53.6V32.5L53.6 24.4 61.8 14.5ZM34.2 29.7 11 42.4V68.8L34.2 81.5 42.4 76.8 27 68.8V47.6L42.4 39.6 34.2 29.7Z"
+      fill="#4A4A4A"
+    />
+    <path
+      d="M51.6 23.2 78 37.2V56.6L51.6 70.6 18 52.5V43.3L51.6 23.2Z"
+      fill="url(#solvexGreen)"
+    />
+    <path
+      d="M31.6 45.8H41.2M39 45.8V37.8M44.8 54.2H58.4M56.2 54.2V62.6M50.6 41.6H60.8M58.6 41.6V34.2"
+      stroke="#D7FCE6"
+      stroke-width="2"
+      stroke-linecap="round"
+    />
+    <circle cx="41.2" cy="45.8" r="2.2" fill="#D7FCE6" />
+    <circle cx="58.4" cy="54.2" r="2.2" fill="#D7FCE6" />
+    <circle cx="60.8" cy="41.6" r="2.2" fill="#D7FCE6" />
+  </g>
+  <text
+    x="132"
+    y="62"
+    fill="#5B5B5B"
+    font-family="Inter, Arial, sans-serif"
+    font-size="42"
+    font-weight="600"
+    letter-spacing="3"
+  >
+    SOLVEX
+  </text>
+</svg>
