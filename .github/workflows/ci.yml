@@ -37,5 +37,21 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
+            set -e
+            cd /home/solvex/solvex
+            git pull --ff-only
+            git fetch --tags --force
             cd /home/solvex/solvex/infra
-            docker compose up -d --build
+            RELEASE_TAG=$(git describe --tags --exact-match 2>/dev/null || true)
+            # Use release tag when present; otherwise fall back to SHA for traceability.
+            if [ -n "$RELEASE_TAG" ]; then
+              export WEB_IMAGE_TAG="$RELEASE_TAG"
+            else
+              export WEB_IMAGE_TAG="${GITHUB_SHA}"
+            fi
+            docker compose build --pull web
+            # Tag latest only for releases to keep production aligned to stable versions.
+            if [ -n "$RELEASE_TAG" ]; then
+              docker tag "solvex-web:${WEB_IMAGE_TAG}" "solvex-web:latest"
+            fi
+            docker compose up -d --force-recreate web

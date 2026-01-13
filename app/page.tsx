@@ -41,7 +41,7 @@ export default function Home() {
           <nav className="hidden items-center gap-6 text-sm text-[var(--muted)] md:flex">
             <a href="#servicios" className="hover:text-[var(--ink)]">Servicios</a>
             <a href="#propuesta" className="hover:text-[var(--ink)]">Propuesta</a>
-            <a href="#inicio" className="hover:text-[var(--ink)]">Como empezamos</a>
+            <a href="#inicio" className="hover:text-[var(--ink)]">Cómo empezamos</a>
             <a href="#productos" className="hover:text-[var(--ink)]">Productos</a>
             <a href="#proceso" className="hover:text-[var(--ink)]">Proceso</a>
             <a href="#resultados" className="hover:text-[var(--ink)]">Resultados</a>
@@ -69,14 +69,14 @@ export default function Home() {
         <div className="grid gap-12 md:grid-cols-[1.05fr_0.95fr] md:items-center">
           <div className="animate-reveal">
             <p className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1 text-xs text-[var(--muted)]">
-              Consultoria tecnologica · Integraciones · Operaciones criticas
+              Consultoría tecnológica · Integraciones · Operaciones críticas
             </p>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight md:text-6xl">
               Integramos sistemas para que tu negocio opere con claridad, velocidad y control.
             </h1>
             <p className="mt-4 text-base text-[var(--muted)] md:text-lg">
-              Alineamos ERP, CRM, eCommerce y logistica en un solo flujo. Roadmap claro, riesgos controlados
-              y entregas medibles desde la primera iteracion.
+              Alineamos ERP, CRM, eCommerce y logística en un solo flujo. Roadmap claro, riesgos controlados
+              y entregas medibles desde la primera iteración.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a
@@ -104,25 +104,25 @@ export default function Home() {
             <div className="rounded-2xl border border-black/10 bg-white p-5">
               <p className="text-sm font-medium text-[var(--ink)]">Lo que resolvemos</p>
               <ul className="mt-3 space-y-2 text-sm text-[var(--muted)]">
-                <li>• Conectar ERP ↔ CRM ↔ eCommerce ↔ logistica</li>
+                <li>• Conectar ERP ↔ CRM ↔ eCommerce ↔ logística</li>
                 <li>• Consolidar data para BI y reporting operativo</li>
                 <li>• Automatizar aprobaciones, conciliaciones y alertas</li>
-                <li>• Modernizar servicios sin cortar la operacion</li>
+                <li>• Modernizar servicios sin cortar la operación</li>
               </ul>
-              <p className="mt-5 text-xs text-[var(--muted)]">Menos planillas. Mas visibilidad.</p>
+              <p className="mt-5 text-xs text-[var(--muted)]">Menos planillas. Más visibilidad.</p>
             </div>
             <div className="mt-4 rounded-2xl border border-black/10 bg-white p-5">
               <p className="text-sm font-medium text-[var(--ink)]">Capacidades de entrega</p>
               <div className="mt-3 flex flex-wrap gap-2 text-xs">
                 {[
                   "Arquitectura de APIs",
-                  "Mensajeria y eventos",
+                  "Mensajería y eventos",
                   "ETL/ELT",
                   "PostgreSQL/BigQuery",
                   "Docker/Kubernetes",
                   "AWS/GCP",
                   "Observabilidad",
-                  "Infra como codigo",
+                  "Infra como código",
                 ].map((t) => (
                   <span key={t} className="rounded-full border border-black/10 px-3 py-1 text-[var(--muted)]">
                     {t}
@@ -155,12 +155,12 @@ export default function Home() {
 
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {[
-              { title: "Integraciones criticas", desc: "APIs, ETL, webhooks, colas y eventos con monitoreo." },
+              { title: "Integraciones críticas", desc: "APIs, ETL, webhooks, colas y eventos con monitoreo." },
               { title: "Plataformas a medida", desc: "Servicios seguros, resilientes y listos para crecer." },
-              { title: "ERP / CRM", desc: "Implementacion, customizaciones, flujos y entrenamiento." },
-              { title: "Automatizacion", desc: "Workflows, aprobaciones, conciliaciones y QA de datos." },
-              { title: "Data & Observabilidad", desc: "Metricas, dashboards, trazas y data contracts." },
-              { title: "Diagnostico", desc: "Auditoria tecnica y roadmap priorizado por impacto." },
+              { title: "ERP / CRM", desc: "Implementación, customizaciones, flujos y entrenamiento." },
+              { title: "Automatización", desc: "Workflows, aprobaciones, conciliaciones y QA de datos." },
+              { title: "Data & Observabilidad", desc: "Métricas, dashboards, trazas y data contracts." },
+              { title: "Diagnóstico", desc: "Auditoría técnica y roadmap priorizado por impacto." },
             ].map((s) => (
               <div key={s.title} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 shadow-soft">
                 <h3 className="text-lg font-semibold">{s.title}</h3>
@@ -176,7 +176,7 @@ export default function Home() {
           <SectionTitle
             kicker="Propuesta"
             title="Una propuesta de valor clara y medible"
-            subtitle="Integramos sistemas para que la operacion tenga control, visibilidad y ritmo."
+            subtitle="Integramos sistemas para que la operación tenga control, visibilidad y ritmo."
           />
 
           <div className="mt-10 grid gap-4 md:grid-cols-[1.15fr_0.85fr]">
@@ -186,7 +186,7 @@ export default function Home() {
                 {[
                   { title: "Mapa de sistemas", desc: "Inventario, dueños y puntos de falla." },
                   { title: "Contratos de datos", desc: "Esquemas claros, versionados y auditables." },
-                  { title: "Observabilidad", desc: "Metricas, trazas y alertas accionables." },
+                  { title: "Observabilidad", desc: "Métricas, trazas y alertas accionables." },
                   { title: "Arquitectura escalable", desc: "Servicios listos para crecer sin deuda." },
                 ].map((item) => (
                   <div key={item.title} className="rounded-2xl border border-black/10 bg-[var(--paper)] p-4">
@@ -196,7 +196,7 @@ export default function Home() {
                 ))}
               </div>
               <div className="mt-6 rounded-2xl border border-black/10 bg-[var(--paper)] p-4 text-sm text-[var(--muted)]">
-                Entrega con documentacion viva y handover real: diagramas, runbooks y ownership claro.
+                Entrega con documentación viva y handover real: diagramas, runbooks y ownership claro.
               </div>
             </div>
 
@@ -205,7 +205,7 @@ export default function Home() {
               <ul className="mt-4 space-y-3 text-sm text-[var(--muted)]">
                 <li>• Menos retrabajo entre equipos.</li>
                 <li>• Flujo de datos confiable y auditado.</li>
-                <li>• Operaciones rapidas ante cambios.</li>
+                <li>• Operaciones rápidas ante cambios.</li>
                 <li>• Plataforma preparada para escalar.</li>
               </ul>
               <div className="mt-6 rounded-2xl border border-black/10 bg-white p-4">
@@ -220,30 +220,30 @@ export default function Home() {
       <section id="inicio" className="border-t border-black/5 bg-white/60">
         <div className="mx-auto max-w-6xl px-4 py-16">
           <SectionTitle
-            kicker="Como empezamos"
-            title="Alineamos negocio y tecnologia desde el dia uno"
-            subtitle="Un camino claro para pasar de diagnostico a entregas sostenibles."
+            kicker="Cómo empezamos"
+            title="Alineamos negocio y tecnología desde el día uno"
+            subtitle="Un camino claro para pasar de diagnóstico a entregas sostenibles."
           />
 
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {[
               {
                 step: "Etapa 1",
-                title: "Diagnostico & roadmap",
+                title: "Diagnóstico & roadmap",
                 desc: "Auditamos sistemas, definimos el backlog y priorizamos quick wins con impacto real.",
-                items: ["Mapa de sistemas", "Dolores y cuellos", "Plan 90 dias"],
+                items: ["Mapa de sistemas", "Dolores y cuellos", "Plan 90 días"],
               },
               {
                 step: "Etapa 2",
                 title: "MVP operativo",
-                desc: "Construimos la primera integracion o flujo critico con monitoreo y QA.",
-                items: ["Primera integracion", "Data contracts", "Alertas y trazas"],
+                desc: "Construimos la primera integración o flujo crítico con monitoreo y QA.",
+                items: ["Primera integración", "Data contracts", "Alertas y trazas"],
               },
               {
                 step: "Etapa 3",
                 title: "Escalado & producto",
                 desc: "Expandimos conectores, automatizaciones y dashboards para sostener el crecimiento.",
-                items: ["Nuevos endpoints", "Automatizacion", "Documentacion viva"],
+                items: ["Nuevos endpoints", "Automatización", "Documentación viva"],
               },
             ].map((stage) => (
               <div key={stage.title} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 shadow-soft">
@@ -262,19 +262,19 @@ export default function Home() {
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {[
               {
-                title: "Diagnostico puntual",
+                title: "Diagnóstico puntual",
                 desc: "Ideal para alinear objetivos y destrabar un cuello urgente.",
                 items: ["1-2 semanas", "Insights accionables", "Roadmap priorizado"],
               },
               {
-                title: "Implementacion iterativa",
-                desc: "Construccion por sprints con entregas visibles cada 2-3 semanas.",
+                title: "Implementación iterativa",
+                desc: "Construcción por sprints con entregas visibles cada 2-3 semanas.",
                 items: ["Backlog activo", "KPIs de progreso", "Handover real"],
               },
               {
-                title: "Acompanamiento continuo",
+                title: "Acompañamiento continuo",
                 desc: "Equipo extendido para evolucionar integraciones y data.",
-                items: ["Monitoreo y soporte", "Mejoras continuas", "Metricas operativas"],
+                items: ["Monitoreo y soporte", "Mejoras continuas", "Métricas operativas"],
               },
             ].map((plan) => (
               <div key={plan.title} className="rounded-3xl border border-black/10 bg-white p-6 shadow-soft">
@@ -293,14 +293,14 @@ export default function Home() {
             <div>
               <p className="text-sm font-semibold text-[var(--ink)]">Primer paso recomendado</p>
               <p className="mt-2 text-sm text-[var(--muted)]">
-                Un diagnostico corto para alinear objetivos, tiempos y riesgos antes de construir.
+                Un diagnóstico corto para alinear objetivos, tiempos y riesgos antes de construir.
               </p>
             </div>
             <a
               href="#contacto"
               className="mt-4 inline-flex items-center justify-center rounded-xl bg-[var(--ink)] px-4 py-3 text-sm font-medium text-[var(--paper)] hover:bg-black md:mt-0"
             >
-              Agendar diagnostico
+              Agendar diagnóstico
             </a>
           </div>
         </div>
@@ -318,18 +318,18 @@ export default function Home() {
             {[
               {
                 title: "Solvex Connect",
-                desc: "Conectores prearmados para ERP, eCommerce, pagos y logistica.",
-                items: ["Catalogo de conectores", "Monitoreo de integraciones", "Versionado de endpoints"],
+                desc: "Conectores prearmados para ERP, eCommerce, pagos y logística.",
+                items: ["Catálogo de conectores", "Monitoreo de integraciones", "Versionado de endpoints"],
               },
               {
                 title: "Solvex Pulse",
                 desc: "Observabilidad operativa para tener SLA claros y alertas accionables.",
-                items: ["Dashboards de procesos", "Alertas en tiempo real", "Auditoria y trazas"],
+                items: ["Dashboards de procesos", "Alertas en tiempo real", "Auditoría y trazas"],
               },
               {
                 title: "Solvex Automate",
-                desc: "Automatizacion no-code/low-code con validaciones y aprobaciones.",
-                items: ["Workflows con reglas", "Gestion de tareas", "Integraciones seguras"],
+                desc: "Automatización no-code/low-code con validaciones y aprobaciones.",
+                items: ["Workflows con reglas", "Gestión de tareas", "Integraciones seguras"],
               },
             ].map((p) => (
               <div key={p.title} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 shadow-soft">
@@ -357,9 +357,9 @@ export default function Home() {
           <div className="mt-10 grid gap-4 md:grid-cols-4">
             {[
               { n: "01", title: "Descubrimiento", desc: "Objetivos, sistemas, restricciones y quick wins." },
-              { n: "02", title: "Diseno", desc: "Arquitectura, contratos de datos, plan de entrega." },
-              { n: "03", title: "Implementacion", desc: "Iteraciones cortas, QA, observabilidad." },
-              { n: "04", title: "Go-live & soporte", desc: "Monitoreo, documentacion, mejoras continuas." },
+              { n: "02", title: "Diseño", desc: "Arquitectura, contratos de datos, plan de entrega." },
+              { n: "03", title: "Implementación", desc: "Iteraciones cortas, QA, observabilidad." },
+              { n: "04", title: "Go-live & soporte", desc: "Monitoreo, documentación, mejoras continuas." },
             ].map((p) => (
               <div key={p.n} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6">
                 <div className="text-xs font-medium text-[var(--muted)]">{p.n}</div>
@@ -375,15 +375,15 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4 py-16">
           <SectionTitle
             kicker="Resultados"
-            title="Impacto medible en operacion y data"
-            subtitle="Benchmarks tipicos tras las primeras 8-12 semanas."
+            title="Impacto medible en operación y data"
+            subtitle="Benchmarks típicos tras las primeras 8-12 semanas."
           />
 
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {[
               { value: "40%", label: "menos tiempo en tareas manuales" },
               { value: "3x", label: "mejoras en visibilidad de stock y ventas" },
-              { value: "99.5%", label: "disponibilidad en procesos criticos" },
+              { value: "99.5%", label: "disponibilidad en procesos críticos" },
             ].map((r) => (
               <div key={r.label} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 text-center shadow-soft">
                 <div className="text-3xl font-semibold text-[var(--ink)]">{r.value}</div>
@@ -395,9 +395,9 @@ export default function Home() {
           <div className="mt-10 grid gap-4 md:grid-cols-4">
             {[
               { title: "Retail & eCommerce", desc: "Ventas, inventario, fulfillment y BI en un solo flujo." },
-              { title: "Servicios B2B", desc: "Onboarding, facturacion recurrente y soporte conectado." },
-              { title: "Manufactura ligera", desc: "Produccion, compras y trazabilidad de insumos." },
-              { title: "Logistica", desc: "Ruteo, tracking y performance en tiempo real." },
+              { title: "Servicios B2B", desc: "Onboarding, facturación recurrente y soporte conectado." },
+              { title: "Manufactura ligera", desc: "Producción, compras y trazabilidad de insumos." },
+              { title: "Logística", desc: "Ruteo, tracking y performance en tiempo real." },
             ].map((s) => (
               <div key={s.title} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-5">
                 <div className="text-sm font-semibold text-[var(--ink)]">{s.title}</div>
@@ -413,14 +413,14 @@ export default function Home() {
           <SectionTitle
             kicker="Contacto"
             title="Contanos qué querés integrar"
-            subtitle="WhatsApp para ir rapido o deja el formulario."
+            subtitle="WhatsApp para ir rápido o dejá el formulario."
           />
 
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             <div className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 shadow-soft">
               <h3 className="text-lg font-semibold">Escribinos</h3>
               <p className="mt-2 text-sm text-[var(--muted)]">
-                Suma tu ERP/CRM actual y que queres conectar (facturacion, stock, ventas, logistica).
+                Sumá tu ERP/CRM actual y qué querés conectar (facturación, stock, ventas, logística).
               </p>
 
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
@@ -463,7 +463,7 @@ export default function Home() {
                 />
                 <textarea
                   name="message"
-                  placeholder="Que queres integrar o mejorar?"
+                  placeholder="¿Qué querés integrar o mejorar?"
                   className="h-28 w-full rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm outline-none focus:border-black/30"
                   required
                 />
@@ -486,7 +486,7 @@ export default function Home() {
           <div className="flex gap-4">
             <a className="hover:text-[var(--ink)]" href="#servicios">Servicios</a>
             <a className="hover:text-[var(--ink)]" href="#propuesta">Propuesta</a>
-            <a className="hover:text-[var(--ink)]" href="#inicio">Como empezamos</a>
+            <a className="hover:text-[var(--ink)]" href="#inicio">Cómo empezamos</a>
             <a className="hover:text-[var(--ink)]" href="#productos">Productos</a>
             <a className="hover:text-[var(--ink)]" href="#proceso">Proceso</a>
             <a className="hover:text-[var(--ink)]" href="#resultados">Resultados</a>
