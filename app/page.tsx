@@ -69,14 +69,14 @@ export default function Home() {
         <div className="grid gap-12 md:grid-cols-[1.05fr_0.95fr] md:items-center">
           <div className="animate-reveal">
             <p className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1 text-xs text-[var(--muted)]">
-              Software factory · Integraciones · Operaciones críticas
+              Consultoria tecnologica · Integraciones · Operaciones criticas
             </p>
             <h1 className="mt-4 text-4xl font-semibold tracking-tight md:text-6xl">
-              Integraciones y plataformas que ordenan tu operación y escalan tu negocio.
+              Integramos sistemas para que tu negocio opere con claridad, velocidad y control.
             </h1>
             <p className="mt-4 text-base text-[var(--muted)] md:text-lg">
-              Alineamos ERP, CRM, eCommerce y logística en un solo flujo. Delivery por hitos, arquitectura clara
-              y observabilidad real desde el primer deploy.
+              Alineamos ERP, CRM, eCommerce y logistica en un solo flujo. Roadmap claro, riesgos controlados
+              y entregas medibles desde la primera iteracion.
             </p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <a
@@ -104,17 +104,26 @@ export default function Home() {
             <div className="rounded-2xl border border-black/10 bg-white p-5">
               <p className="text-sm font-medium text-[var(--ink)]">Lo que resolvemos</p>
               <ul className="mt-3 space-y-2 text-sm text-[var(--muted)]">
-                <li>• Conectar ERP ↔ CRM ↔ eCommerce ↔ logística</li>
+                <li>• Conectar ERP ↔ CRM ↔ eCommerce ↔ logistica</li>
                 <li>• Consolidar data para BI y reporting operativo</li>
                 <li>• Automatizar aprobaciones, conciliaciones y alertas</li>
-                <li>• Modernizar servicios sin cortar la operación</li>
+                <li>• Modernizar servicios sin cortar la operacion</li>
               </ul>
-              <p className="mt-5 text-xs text-[var(--muted)]">Menos planillas. Más visibilidad.</p>
+              <p className="mt-5 text-xs text-[var(--muted)]">Menos planillas. Mas visibilidad.</p>
             </div>
             <div className="mt-4 rounded-2xl border border-black/10 bg-white p-5">
-              <p className="text-sm font-medium text-[var(--ink)]">Stack de entrega</p>
+              <p className="text-sm font-medium text-[var(--ink)]">Capacidades de entrega</p>
               <div className="mt-3 flex flex-wrap gap-2 text-xs">
-                {["APIs", "PostgreSQL", "Docker", "Kafka", "Redis", "AWS", "REST/GraphQL", "n8n"].map((t) => (
+                {[
+                  "Arquitectura de APIs",
+                  "Mensajeria y eventos",
+                  "ETL/ELT",
+                  "PostgreSQL/BigQuery",
+                  "Docker/Kubernetes",
+                  "AWS/GCP",
+                  "Observabilidad",
+                  "Infra como codigo",
+                ].map((t) => (
                   <span key={t} className="rounded-full border border-black/10 px-3 py-1 text-[var(--muted)]">
                     {t}
                   </span>
@@ -141,17 +150,17 @@ export default function Home() {
           <SectionTitle
             kicker="Servicios"
             title="Hacemos que tus sistemas trabajen juntos"
-            subtitle="Arquitectura simple, mantenible y con trazabilidad."
+            subtitle="Arquitectura sostenible, ownership claro y operaciones confiables."
           />
 
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {[
-              { title: "Integraciones críticas", desc: "APIs, ETL, webhooks, colas y eventos. Logging y alertas." },
-              { title: "Plataformas a medida", desc: "Servicios resilientes, seguros y listos para escalar." },
-              { title: "ERP / CRM", desc: "Implementación, customizaciones, flujos y capacitación." },
-              { title: "Automatización", desc: "Workflows, aprobaciones, conciliaciones y QA de datos." },
-              { title: "Data & Observabilidad", desc: "Métricas, dashboards, trazas y data contracts." },
-              { title: "Diagnóstico", desc: "Auditoría técnica + roadmap priorizado por impacto." },
+              { title: "Integraciones criticas", desc: "APIs, ETL, webhooks, colas y eventos con monitoreo." },
+              { title: "Plataformas a medida", desc: "Servicios seguros, resilientes y listos para crecer." },
+              { title: "ERP / CRM", desc: "Implementacion, customizaciones, flujos y entrenamiento." },
+              { title: "Automatizacion", desc: "Workflows, aprobaciones, conciliaciones y QA de datos." },
+              { title: "Data & Observabilidad", desc: "Metricas, dashboards, trazas y data contracts." },
+              { title: "Diagnostico", desc: "Auditoria tecnica y roadmap priorizado por impacto." },
             ].map((s) => (
               <div key={s.title} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 shadow-soft">
                 <h3 className="text-lg font-semibold">{s.title}</h3>
@@ -166,18 +175,18 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4 py-16">
           <SectionTitle
             kicker="Propuesta"
-            title="Una capa única para coordinar operaciones"
-            subtitle="Diseñamos el flujo de datos y lo operamos con precisión."
+            title="Una propuesta de valor clara y medible"
+            subtitle="Integramos sistemas para que la operacion tenga control, visibilidad y ritmo."
           />
 
           <div className="mt-10 grid gap-4 md:grid-cols-[1.15fr_0.85fr]">
             <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-soft">
-              <p className="text-sm font-semibold text-[var(--ink)]">Lo que incluimos en cada entrega</p>
+              <p className="text-sm font-semibold text-[var(--ink)]">Lo que entregamos</p>
               <div className="mt-4 grid gap-4 md:grid-cols-2">
                 {[
                   { title: "Mapa de sistemas", desc: "Inventario, dueños y puntos de falla." },
                   { title: "Contratos de datos", desc: "Esquemas claros, versionados y auditables." },
-                  { title: "Observabilidad", desc: "Métricas, trazas y alertas accionables." },
+                  { title: "Observabilidad", desc: "Metricas, trazas y alertas accionables." },
                   { title: "Arquitectura escalable", desc: "Servicios listos para crecer sin deuda." },
                 ].map((item) => (
                   <div key={item.title} className="rounded-2xl border border-black/10 bg-[var(--paper)] p-4">
@@ -187,16 +196,16 @@ export default function Home() {
                 ))}
               </div>
               <div className="mt-6 rounded-2xl border border-black/10 bg-[var(--paper)] p-4 text-sm text-[var(--muted)]">
-                Entregamos con documentación viva y un handover real: diagramas, runbooks y ownership claro.
+                Entrega con documentacion viva y handover real: diagramas, runbooks y ownership claro.
               </div>
             </div>
 
             <div className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 shadow-soft">
-              <p className="text-sm font-semibold text-[var(--ink)]">Qué ganás</p>
+              <p className="text-sm font-semibold text-[var(--ink)]">Valor para el negocio</p>
               <ul className="mt-4 space-y-3 text-sm text-[var(--muted)]">
                 <li>• Menos retrabajo entre equipos.</li>
                 <li>• Flujo de datos confiable y auditado.</li>
-                <li>• Operaciones rápidas ante cambios.</li>
+                <li>• Operaciones rapidas ante cambios.</li>
                 <li>• Plataforma preparada para escalar.</li>
               </ul>
               <div className="mt-6 rounded-2xl border border-black/10 bg-white p-4">
@@ -265,7 +274,7 @@ export default function Home() {
               {
                 title: "Acompanamiento continuo",
                 desc: "Equipo extendido para evolucionar integraciones y data.",
-                items: ["Monitoreo y soporte", "Mejoras continuas", "Métricas operativas"],
+                items: ["Monitoreo y soporte", "Mejoras continuas", "Metricas operativas"],
               },
             ].map((plan) => (
               <div key={plan.title} className="rounded-3xl border border-black/10 bg-white p-6 shadow-soft">
@@ -309,18 +318,18 @@ export default function Home() {
             {[
               {
                 title: "Solvex Connect",
-                desc: "Conectores prearmados para ERP, eCommerce, pagos y logística.",
-                items: ["Catálogo de conectores", "Monitoreo de integraciones", "Versionado de endpoints"],
+                desc: "Conectores prearmados para ERP, eCommerce, pagos y logistica.",
+                items: ["Catalogo de conectores", "Monitoreo de integraciones", "Versionado de endpoints"],
               },
               {
                 title: "Solvex Pulse",
                 desc: "Observabilidad operativa para tener SLA claros y alertas accionables.",
-                items: ["Dashboards de procesos", "Alertas en tiempo real", "Auditoría y trazas"],
+                items: ["Dashboards de procesos", "Alertas en tiempo real", "Auditoria y trazas"],
               },
               {
                 title: "Solvex Automate",
-                desc: "Automatización no-code/low-code con validaciones y aprobaciones.",
-                items: ["Workflows con reglas", "Gestión de tareas", "Integraciones seguras"],
+                desc: "Automatizacion no-code/low-code con validaciones y aprobaciones.",
+                items: ["Workflows con reglas", "Gestion de tareas", "Integraciones seguras"],
               },
             ].map((p) => (
               <div key={p.title} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 shadow-soft">
@@ -348,9 +357,9 @@ export default function Home() {
           <div className="mt-10 grid gap-4 md:grid-cols-4">
             {[
               { n: "01", title: "Descubrimiento", desc: "Objetivos, sistemas, restricciones y quick wins." },
-              { n: "02", title: "Diseño", desc: "Arquitectura, contratos de datos, plan de entrega." },
-              { n: "03", title: "Implementación", desc: "Iteraciones cortas, QA, observabilidad." },
-              { n: "04", title: "Go-live & Soporte", desc: "Monitoreo, documentación, mejoras continuas." },
+              { n: "02", title: "Diseno", desc: "Arquitectura, contratos de datos, plan de entrega." },
+              { n: "03", title: "Implementacion", desc: "Iteraciones cortas, QA, observabilidad." },
+              { n: "04", title: "Go-live & soporte", desc: "Monitoreo, documentacion, mejoras continuas." },
             ].map((p) => (
               <div key={p.n} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6">
                 <div className="text-xs font-medium text-[var(--muted)]">{p.n}</div>
@@ -366,15 +375,15 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4 py-16">
           <SectionTitle
             kicker="Resultados"
-            title="Impacto medible en operación y data"
-            subtitle="Benchmarks típicos tras las primeras 8-12 semanas."
+            title="Impacto medible en operacion y data"
+            subtitle="Benchmarks tipicos tras las primeras 8-12 semanas."
           />
 
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             {[
               { value: "40%", label: "menos tiempo en tareas manuales" },
               { value: "3x", label: "mejoras en visibilidad de stock y ventas" },
-              { value: "99.5%", label: "disponibilidad en procesos críticos" },
+              { value: "99.5%", label: "disponibilidad en procesos criticos" },
             ].map((r) => (
               <div key={r.label} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 text-center shadow-soft">
                 <div className="text-3xl font-semibold text-[var(--ink)]">{r.value}</div>
@@ -386,9 +395,9 @@ export default function Home() {
           <div className="mt-10 grid gap-4 md:grid-cols-4">
             {[
               { title: "Retail & eCommerce", desc: "Ventas, inventario, fulfillment y BI en un solo flujo." },
-              { title: "Servicios B2B", desc: "Onboarding, facturación recurrente y soporte conectado." },
-              { title: "Manufactura ligera", desc: "Producción, compras y trazabilidad de insumos." },
-              { title: "Logística", desc: "Ruteo, tracking y performance en tiempo real." },
+              { title: "Servicios B2B", desc: "Onboarding, facturacion recurrente y soporte conectado." },
+              { title: "Manufactura ligera", desc: "Produccion, compras y trazabilidad de insumos." },
+              { title: "Logistica", desc: "Ruteo, tracking y performance en tiempo real." },
             ].map((s) => (
               <div key={s.title} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-5">
                 <div className="text-sm font-semibold text-[var(--ink)]">{s.title}</div>
@@ -404,14 +413,14 @@ export default function Home() {
           <SectionTitle
             kicker="Contacto"
             title="Contanos qué querés integrar"
-            subtitle="WhatsApp para ir rápido o dejá el formulario."
+            subtitle="WhatsApp para ir rapido o deja el formulario."
           />
 
           <div className="mt-10 grid gap-6 md:grid-cols-2">
             <div className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 shadow-soft">
               <h3 className="text-lg font-semibold">Escribinos</h3>
               <p className="mt-2 text-sm text-[var(--muted)]">
-                Sumá tu ERP/CRM actual y qué querés conectar (facturación, stock, ventas, logística).
+                Suma tu ERP/CRM actual y que queres conectar (facturacion, stock, ventas, logistica).
               </p>
 
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
@@ -454,7 +463,7 @@ export default function Home() {
                 />
                 <textarea
                   name="message"
-                  placeholder="¿Qué querés integrar o mejorar?"
+                  placeholder="Que queres integrar o mejorar?"
                   className="h-28 w-full rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm outline-none focus:border-black/30"
                   required
                 />
