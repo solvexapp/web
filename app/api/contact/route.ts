@@ -105,12 +105,12 @@ async function applyRateLimit(client: Client, ip: string) {
       ON CONFLICT (ip)
       DO UPDATE SET
         count = CASE
-          WHEN contact_rate_limits.window_start < NOW() - ($2 * INTERVAL '1 second')
+          WHEN contact_rate_limits.window_start < NOW() - make_interval(secs => $2)
             THEN 1
           ELSE contact_rate_limits.count + 1
         END,
         window_start = CASE
-          WHEN contact_rate_limits.window_start < NOW() - ($2 * INTERVAL '1 second')
+          WHEN contact_rate_limits.window_start < NOW() - make_interval(secs => $2)
             THEN NOW()
           ELSE contact_rate_limits.window_start
         END

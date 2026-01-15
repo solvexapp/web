@@ -43,10 +43,13 @@ export default function Home() {
           <nav className="hidden items-center gap-6 text-sm text-[var(--muted)] md:flex">
             <a href="#servicios" className="hover:text-[var(--ink)]">Servicios</a>
             <a href="#propuesta" className="hover:text-[var(--ink)]">Propuesta</a>
+            <a href="#experiencia" className="hover:text-[var(--ink)]">Experiencia</a>
             <a href="#inicio" className="hover:text-[var(--ink)]">Cómo empezamos</a>
             <a href="#productos" className="hover:text-[var(--ink)]">Productos</a>
             <a href="#proceso" className="hover:text-[var(--ink)]">Proceso</a>
             <a href="#resultados" className="hover:text-[var(--ink)]">Resultados</a>
+            <a href="#casos" className="hover:text-[var(--ink)]">Casos</a>
+            <a href="#faq" className="hover:text-[var(--ink)]">FAQ</a>
             <a href="#contacto" className="hover:text-[var(--ink)]">Contacto</a>
           </nav>
           <div className="flex items-center gap-2">
@@ -144,6 +147,77 @@ export default function Home() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      <section id="experiencia" className="border-t border-black/5 bg-white/70">
+        <div className="mx-auto max-w-6xl px-4 py-16">
+          <SectionTitle
+            kicker="Experiencia"
+            title="Una experiencia de implementación que evoluciona con cada scroll"
+            subtitle="Secciones inmersivas y detalladas para transmitir claridad, foco y progreso."
+          />
+        </div>
+
+        <div className="scroll-stage mx-auto max-w-6xl space-y-10 px-4 pb-20">
+          {[
+            {
+              title: "Mapa vivo de sistemas",
+              desc: "Visualizamos todo el ecosistema con mapas dinámicos, ownership claro y prioridades visibles.",
+              items: ["Inventario conectado", "Riesgos detectados", "Roadmap compartido"],
+              accent: "from-amber-200/70 via-white to-white",
+              stat: "120+ endpoints mapeados",
+            },
+            {
+              title: "Ejecución en capas",
+              desc: "Cada sprint desbloquea operaciones más rápidas, con entregas parciales que suman valor real.",
+              items: ["Conectores críticos", "Automatización de flujos", "QA operativo"],
+              accent: "from-emerald-100/80 via-white to-white",
+              stat: "3 entregas visibles al mes",
+            },
+            {
+              title: "Control en tiempo real",
+              desc: "Observabilidad aplicada para que tu equipo tome decisiones con datos confiables.",
+              items: ["Dashboards accionables", "Alertas inteligentes", "Trazas auditables"],
+              accent: "from-sky-100/90 via-white to-white",
+              stat: "SLA monitoreado 24/7",
+            },
+          ].map((panel) => (
+            <div key={panel.title} className="scroll-step">
+              <div className={`scroll-panel bg-gradient-to-br ${panel.accent}`}>
+                <div className="grid gap-8 md:grid-cols-[1.1fr_0.9fr] md:items-center">
+                  <div>
+                    <p className="text-xs font-medium text-[var(--muted)]">Scroll experience</p>
+                    <h3 className="mt-3 text-2xl font-semibold text-[var(--ink)] md:text-3xl">{panel.title}</h3>
+                    <p className="mt-3 text-sm text-[var(--muted)] md:text-base">{panel.desc}</p>
+                    <ul className="mt-5 space-y-2 text-sm text-[var(--muted)]">
+                      {panel.items.map((item) => (
+                        <li key={item}>• {item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="rounded-3xl border border-black/10 bg-white p-6 shadow-soft">
+                    <p className="text-xs font-medium text-[var(--muted)]">Indicador clave</p>
+                    <p className="mt-3 text-3xl font-semibold text-[var(--ink)]">{panel.stat}</p>
+                    <div className="mt-6 space-y-3 text-xs text-[var(--muted)]">
+                      <div className="flex items-center justify-between rounded-full border border-black/10 bg-[var(--paper)] px-4 py-2">
+                        <span>Avance del stack</span>
+                        <span className="font-semibold text-[var(--ink)]">+18%</span>
+                      </div>
+                      <div className="flex items-center justify-between rounded-full border border-black/10 bg-[var(--paper)] px-4 py-2">
+                        <span>Integraciones vivas</span>
+                        <span className="font-semibold text-[var(--ink)]">21</span>
+                      </div>
+                      <div className="flex items-center justify-between rounded-full border border-black/10 bg-[var(--paper)] px-4 py-2">
+                        <span>Alertas gestionadas</span>
+                        <span className="font-semibold text-[var(--ink)]">0 incidentes</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -410,6 +484,86 @@ export default function Home() {
         </div>
       </section>
 
+      <section id="casos" className="border-t border-black/5">
+        <div className="mx-auto max-w-6xl px-4 py-16">
+          <SectionTitle
+            kicker="Casos reales"
+            title="Cómo se ve la transformación en operaciones reales"
+            subtitle="Historias típicas basadas en implementaciones recientes."
+          />
+
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {[
+              {
+                title: "Marketplace omnicanal",
+                desc: "ERP + eCommerce + logística sincronizados con visibilidad minuto a minuto.",
+                impact: "Tiempo de despacho -32%",
+                items: ["Integración de stock", "Ruteo automatizado", "Reportes por canal"],
+              },
+              {
+                title: "Industria B2B",
+                desc: "Facturación recurrente, aprobaciones y KPIs consolidados para ventas.",
+                impact: "Ciclo de cobro -18%",
+                items: ["Workflows de aprobación", "Conectores CRM", "Forecast en tiempo real"],
+              },
+              {
+                title: "Retail especializado",
+                desc: "Unificamos datos de tiendas físicas y online para optimizar inventario.",
+                impact: "Quiebres -41%",
+                items: ["Inventario centralizado", "Alertas de reposición", "Analítica operativa"],
+              },
+            ].map((caseItem) => (
+              <div key={caseItem.title} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 shadow-soft">
+                <h3 className="text-lg font-semibold text-[var(--ink)]">{caseItem.title}</h3>
+                <p className="mt-2 text-sm text-[var(--muted)]">{caseItem.desc}</p>
+                <p className="mt-4 text-sm font-semibold text-[var(--ink)]">{caseItem.impact}</p>
+                <ul className="mt-4 space-y-2 text-sm text-[var(--muted)]">
+                  {caseItem.items.map((item) => (
+                    <li key={item}>• {item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" className="border-t border-black/5 bg-white/60">
+        <div className="mx-auto max-w-6xl px-4 py-16">
+          <SectionTitle
+            kicker="FAQ"
+            title="Respuestas rápidas para equipos que quieren acelerar"
+            subtitle="Anticipamos preguntas sobre tiempos, alcance y tecnología."
+          />
+
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {[
+              {
+                title: "¿Cuánto tarda una integración crítica?",
+                desc: "Entre 2 y 4 semanas dependiendo del stack y la complejidad de los flujos.",
+              },
+              {
+                title: "¿Podemos empezar con un piloto?",
+                desc: "Sí. Definimos un flujo clave, lo integramos y medimos impacto en el primer sprint.",
+              },
+              {
+                title: "¿Qué herramientas usan?",
+                desc: "APIs modernas, colas de eventos, ETL/ELT y observabilidad con dashboards accionables.",
+              },
+              {
+                title: "¿Cómo se mide el éxito?",
+                desc: "Con métricas de operación: tiempos de ciclo, errores, SLA y velocidad de entrega.",
+              },
+            ].map((item) => (
+              <div key={item.title} className="rounded-3xl border border-black/10 bg-[var(--paper)] p-6 shadow-soft">
+                <h3 className="text-base font-semibold text-[var(--ink)]">{item.title}</h3>
+                <p className="mt-2 text-sm text-[var(--muted)]">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="contacto" className="border-t border-black/5 bg-white/60">
         <div className="mx-auto max-w-6xl px-4 py-16">
           <SectionTitle
@@ -494,10 +648,13 @@ export default function Home() {
           <div className="flex gap-4">
             <a className="hover:text-[var(--ink)]" href="#servicios">Servicios</a>
             <a className="hover:text-[var(--ink)]" href="#propuesta">Propuesta</a>
+            <a className="hover:text-[var(--ink)]" href="#experiencia">Experiencia</a>
             <a className="hover:text-[var(--ink)]" href="#inicio">Cómo empezamos</a>
             <a className="hover:text-[var(--ink)]" href="#productos">Productos</a>
             <a className="hover:text-[var(--ink)]" href="#proceso">Proceso</a>
             <a className="hover:text-[var(--ink)]" href="#resultados">Resultados</a>
+            <a className="hover:text-[var(--ink)]" href="#casos">Casos</a>
+            <a className="hover:text-[var(--ink)]" href="#faq">FAQ</a>
             <a className="hover:text-[var(--ink)]" href="#contacto">Contacto</a>
           </div>
         </div>
