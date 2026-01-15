@@ -50,6 +50,25 @@ Nginx actúa como reverse proxy hacia el servicio `web` en el puerto 3000.
 Configuradas vía `docker-compose.yml`:
 
 - NEXT_PUBLIC_WHATSAPP_NUMBER
+- NEXT_PUBLIC_TURNSTILE_SITE_KEY
+- TURNSTILE_SECRET_KEY
+- DATABASE_URL
+- DATABASE_SSL (opcional, `true` para habilitar SSL con `rejectUnauthorized: false`)
+- CONTACT_MAIL_PROVIDER (`postmark` o `ses`)
+- CONTACT_FROM
+- CONTACT_TO (opcional, default `contacto@solvexapp.com`)
+- POSTMARK_TOKEN (si `CONTACT_MAIL_PROVIDER=postmark`)
+- AWS_ACCESS_KEY_ID (si `CONTACT_MAIL_PROVIDER=ses`)
+- AWS_SECRET_ACCESS_KEY (si `CONTACT_MAIL_PROVIDER=ses`)
+- AWS_REGION (si `CONTACT_MAIL_PROVIDER=ses`)
+- AWS_SESSION_TOKEN (opcional, si `CONTACT_MAIL_PROVIDER=ses`)
+- CONTACT_RATE_LIMIT_MAX (opcional, default `5`)
+- CONTACT_RATE_LIMIT_WINDOW_SECONDS (opcional, default `600`)
+- ADMIN_USER (para `/admin`)
+- ADMIN_PASSWORD (para `/admin`)
+- ADMIN_SESSION_SECRET (firmar sesión del panel `/admin`)
+
+Si usás GitHub Actions o algún CI/CD, las mismas variables deben cargarse como secrets/vars del repositorio.
 
 ## Estructura del proyecto
 
@@ -68,8 +87,17 @@ Configuradas vía `docker-compose.yml`:
 POST /api/contact
 
 Actualmente:
-- Recibe datos del formulario
-- Loguea el mensaje (placeholder)
+- Valida datos con Zod y verifica Turnstile.
+- Aplica rate limit por IP.
+- Persiste en Postgres (`contact_messages` y `contact_rate_limits`).
+- Envía email vía Postmark o SES.
+
+## Estado actual del backend
+
+- El proyecto incluye el backend del formulario de contacto.
+- Se agregó un mini CRM mínimo en `/admin` con listado de contactos.
+- Autenticación con login y sesión firmada para el panel `/admin` (no usa Basic Auth).
+- No incluye autenticación social todavía (pendiente).
 
 ## Deployment
 
