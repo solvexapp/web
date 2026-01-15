@@ -1,4 +1,5 @@
 import crypto from "crypto";
+import nodemailer from "nodemailer";
 import { Client } from "pg";
 import { NextResponse } from "next/server";
 import { z } from "zod";
@@ -174,6 +175,36 @@ async function sendEmail(payload: z.infer<typeof CONTACT_SCHEMA>) {
       const text = await response.text();
       throw new Error(`Postmark error: ${response.status} ${text}`);
     }
+    return;
+  }
+
+  if (provider === "smtp") {
+    const host = process.env.SMTP_HOST;
+    const port = Number(process.env.SMTP_PORT ?? "465");
+    const secure = process.env.SMTP_SECURE ? process.env.SMTP_SECURE === "true" : port === 465;
+    const user = process.env.SMTP_USER;
+    const pass = process.env.SMTP_PASS;
+    if (!host || !user || !pass) {
+      throw new Error("SMTP_HOST, SMTP_USER, and SMTP_PASS are required for SMTP");
+    }
+
+    const transporter = nodemailer.createTransport({
+      host,
+      port,
+      secure,
+      auth: {
+        user,
+        pass,
+      },
+    });
+
+    await transporter.sendMail({
+      from,
+      to,
+      replyTo: payload.email,
+      subject,
+      text: textBody,
+    });
     return;
   }
 

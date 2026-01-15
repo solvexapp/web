@@ -47,17 +47,28 @@ Nginx actúa como reverse proxy hacia el servicio `web` en el puerto 3000.
 
 ## Variables de entorno
 
-Configuradas vía `docker-compose.yml`:
+Ubicaciones recomendadas:
+
+- Local: crear `./.env.local` (no se sube a GitHub).
+- Producción (VPS): definirlas en el `docker-compose.yml` del repo `infra` o en un archivo `.env` que ese compose cargue.
+- GitHub Actions: cargarlas como Secrets/Variables del repo si el workflow las usa.
+
+Variables requeridas:
 
 - NEXT_PUBLIC_WHATSAPP_NUMBER
 - NEXT_PUBLIC_TURNSTILE_SITE_KEY
 - TURNSTILE_SECRET_KEY
 - DATABASE_URL
 - DATABASE_SSL (opcional, `true` para habilitar SSL con `rejectUnauthorized: false`)
-- CONTACT_MAIL_PROVIDER (`postmark` o `ses`)
+- CONTACT_MAIL_PROVIDER (`postmark`, `ses` o `smtp`)
 - CONTACT_FROM
 - CONTACT_TO (opcional, default `contacto@solvexapp.com`)
 - POSTMARK_TOKEN (si `CONTACT_MAIL_PROVIDER=postmark`)
+- SMTP_HOST (si `CONTACT_MAIL_PROVIDER=smtp`)
+- SMTP_PORT (si `CONTACT_MAIL_PROVIDER=smtp`)
+- SMTP_USER (si `CONTACT_MAIL_PROVIDER=smtp`)
+- SMTP_PASS (si `CONTACT_MAIL_PROVIDER=smtp`)
+- SMTP_SECURE (opcional, `true` para SSL directo, default `true` si el puerto es 465)
 - AWS_ACCESS_KEY_ID (si `CONTACT_MAIL_PROVIDER=ses`)
 - AWS_SECRET_ACCESS_KEY (si `CONTACT_MAIL_PROVIDER=ses`)
 - AWS_REGION (si `CONTACT_MAIL_PROVIDER=ses`)
@@ -67,8 +78,44 @@ Configuradas vía `docker-compose.yml`:
 - ADMIN_USER (para `/admin`)
 - ADMIN_PASSWORD (para `/admin`)
 - ADMIN_SESSION_SECRET (firmar sesión del panel `/admin`)
+- ADMIN_LOGIN_RATE_LIMIT_MAX (opcional, default `10`)
+- ADMIN_LOGIN_RATE_LIMIT_WINDOW_SECONDS (opcional, default `600`)
 
-Si usás GitHub Actions o algún CI/CD, las mismas variables deben cargarse como secrets/vars del repositorio.
+Ejemplo de `.env.local` (valores de muestra):
+
+NEXT_PUBLIC_WHATSAPP_NUMBER=54911XXXXXXXX
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=your_turnstile_site_key
+TURNSTILE_SECRET_KEY=your_turnstile_secret_key
+DATABASE_URL=postgres://user:password@host:5432/dbname
+DATABASE_SSL=false
+CONTACT_MAIL_PROVIDER=postmark
+CONTACT_FROM=contacto@solvexapp.com
+CONTACT_TO=contacto@solvexapp.com
+POSTMARK_TOKEN=your_postmark_token
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=465
+SMTP_USER=contacto@solvexapp.com
+SMTP_PASS=your_app_password
+SMTP_SECURE=true
+CONTACT_RATE_LIMIT_MAX=5
+CONTACT_RATE_LIMIT_WINDOW_SECONDS=600
+ADMIN_USER=admin
+ADMIN_PASSWORD=your_admin_password
+ADMIN_SESSION_SECRET=your_admin_session_secret
+ADMIN_LOGIN_RATE_LIMIT_MAX=10
+ADMIN_LOGIN_RATE_LIMIT_WINDOW_SECONDS=600
+
+Qué subir a GitHub:
+- Sí: código, `README.md`, configs y (si querés) un `.env.example` con placeholders.
+- No: `/.env*` con valores reales, tokens o credenciales.
+
+CI/CD rápido (sin UI):
+- Podés cargar varios secrets de una sola vez con GitHub CLI:
+  `gh secret set -f .env`
+
+Nota CI/CD:
+- El workflow actual solo requiere `VPS_HOST`, `VPS_USER`, `VPS_SSH_KEY` como secrets de GitHub.
+- Las variables de la app (DB, SMTP, Turnstile, admin) van en el `.env` del VPS usado por `docker compose` (repo `infra`), no en GitHub.
 
 ## Estructura del proyecto
 

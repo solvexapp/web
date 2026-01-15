@@ -1,6 +1,8 @@
+import { unstable_noStore as noStore } from "next/cache";
 import { Client } from "pg";
 
 export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
 type ContactMessage = {
   id: number;
@@ -12,6 +14,7 @@ type ContactMessage = {
 };
 
 async function fetchContacts() {
+  noStore();
   const connectionString = process.env.DATABASE_URL;
   if (!connectionString) {
     throw new Error("DATABASE_URL is required");
