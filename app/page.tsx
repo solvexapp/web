@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import Script from "next/script";
 
 const WHATSAPP_NUMBER = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "54911XXXXXXXX";
 const WHATSAPP_TEXT = encodeURIComponent("Hola! Quiero hablar sobre integraciones/ERP/CRM con Solvex.");
@@ -16,6 +17,7 @@ function SectionTitle({ kicker, title, subtitle }: { kicker?: string; title: str
 
 export default function Home() {
   const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_TEXT}`;
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   return (
     <main className="relative min-h-screen text-[var(--ink)]">
@@ -467,6 +469,12 @@ export default function Home() {
                   className="h-28 w-full rounded-xl border border-black/10 bg-white/70 px-4 py-3 text-sm outline-none focus:border-black/30"
                   required
                 />
+                {turnstileSiteKey ? (
+                  <>
+                    <Script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />
+                    <div className="cf-turnstile" data-sitekey={turnstileSiteKey} />
+                  </>
+                ) : null}
                 <button
                   type="submit"
                   className="w-full rounded-xl bg-[var(--ink)] px-4 py-3 text-sm font-medium text-[var(--paper)] hover:bg-black"
@@ -474,7 +482,7 @@ export default function Home() {
                   Enviar
                 </button>
               </form>
-              <p className="mt-3 text-xs text-[var(--muted)]">Por ahora guarda el mensaje en logs.</p>
+              <p className="mt-3 text-xs text-[var(--muted)]">Protegido con Turnstile y rate limit.</p>
             </div>
           </div>
         </div>
