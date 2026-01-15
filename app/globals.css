@@ -50,6 +50,30 @@ body {
   animation: reveal 900ms ease-out both;
 }
 
+.scroll-stage {
+  position: relative;
+}
+
+.scroll-step {
+  position: relative;
+  min-height: 75vh;
+}
+
+.scroll-panel {
+  position: sticky;
+  top: 5.5rem;
+  border-radius: 28px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 32px;
+  box-shadow: var(--shadow);
+  transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+.scroll-panel:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 70px -35px rgba(37, 32, 26, 0.45);
+}
+
 @keyframes float {
   0% {
     transform: translateY(0px);
