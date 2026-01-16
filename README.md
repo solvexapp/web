@@ -2,6 +2,10 @@
 
 Sitio web de Solvex (marketing + contacto), construido con **Next.js (App Router)** y desplegado en un VPS con **Docker + Nginx**.
 
+## Fuente
+
+Este repo publico se publica desde el monorepo privado `solvex`.
+
 ## Stack
 - Next.js (App Router)
 - React
@@ -37,7 +41,7 @@ http://localhost:3000
 
 El sitio corre como contenedor Node detrás de Nginx.
 
-Desde el VPS:
+Desde el VPS (monorepo privado):
 
 cd ~/solvex/infra
 docker compose up -d web
@@ -50,7 +54,7 @@ Nginx actúa como reverse proxy hacia el servicio `web` en el puerto 3000.
 Ubicaciones recomendadas:
 
 - Local: crear `./.env.local` (no se sube a GitHub).
-- Producción (VPS): definirlas en el `docker-compose.yml` del repo `infra` o en un archivo `.env` que ese compose cargue.
+- Producción (VPS): definirlas en el `docker-compose.yml` del monorepo privado o en un archivo `.env` que ese compose cargue.
 - GitHub Actions: cargarlas como Secrets/Variables del repo si el workflow las usa.
 
 Variables requeridas:
@@ -115,7 +119,7 @@ CI/CD rápido (sin UI):
 
 Nota CI/CD:
 - El workflow actual solo requiere `VPS_HOST`, `VPS_USER`, `VPS_SSH_KEY` como secrets de GitHub.
-- Las variables de la app (DB, SMTP, Turnstile, admin) van en el `.env` del VPS usado por `docker compose` (repo `infra`), no en GitHub.
+- Las variables de la app (DB, SMTP, Turnstile, admin) van en el `.env` del VPS usado por `docker compose` (monorepo privado), no en GitHub.
 
 ## Estructura del proyecto
 
