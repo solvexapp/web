@@ -1,0 +1,88 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ "*" ]
+  push:
+    branches: [ "main" ]
+    tags: [ "v*" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Enable corepack
+        run: corepack enable
+      - name: Activate pnpm
+        run: corepack prepare pnpm@9 --activate
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+      - name: Build
+        run: pnpm build
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')
+    steps:
+      - name: Rebuild and restart services
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          envs: GITHUB_SHA,GITHUB_REF_NAME,GITHUB_REF_TYPE
+          script: |
+            set -e
+            WEB_REPO=/home/solvex/solvex/apps/web
+            INFRA_REPO=/home/solvex/solvex/infra
+            if [ ! -d "$INFRA_REPO/.git" ]; then
+              echo "Infra repo not found at $INFRA_REPO"
+              exit 1
+            fi
+            git -C "$INFRA_REPO" pull --ff-only
+            if [ ! -d "$WEB_REPO/.git" ]; then
+              echo "Web repo not found at $WEB_REPO"
+              exit 1
+            fi
+            git -C "$WEB_REPO" pull --ff-only
+            git -C "$WEB_REPO" fetch --tags --force
+            cd "$INFRA_REPO"
+            if [ -z "${GITHUB_SHA}" ]; then
+              GITHUB_SHA="$(git -C "$WEB_REPO" rev-parse HEAD)"
+            fi
+            if [ -z "${GITHUB_REF_NAME}" ]; then
+              GITHUB_REF_NAME="${GITHUB_SHA}"
+            fi
+            if [ -z "${GITHUB_REF_TYPE}" ]; then
+              GITHUB_REF_TYPE="branch"
+            fi
+            # Use tag only when the workflow is triggered by a tag push.
+            if [ "${GITHUB_REF_TYPE}" = "tag" ]; then
+              export WEB_IMAGE_TAG="${GITHUB_REF_NAME}"
+              export NEXT_PUBLIC_APP_VERSION="${GITHUB_REF_NAME}"
+            else
+              export WEB_IMAGE_TAG="${GITHUB_SHA}"
+              export NEXT_PUBLIC_APP_VERSION="${GITHUB_SHA}"
+            fi
+            if [ -f "$INFRA_REPO/.env" ]; then
+              if grep -q "^NEXT_PUBLIC_APP_VERSION=" "$INFRA_REPO/.env"; then
+                sed -i "s/^NEXT_PUBLIC_APP_VERSION=.*/NEXT_PUBLIC_APP_VERSION=${NEXT_PUBLIC_APP_VERSION}/" "$INFRA_REPO/.env"
+              else
+                echo "NEXT_PUBLIC_APP_VERSION=${NEXT_PUBLIC_APP_VERSION}" >> "$INFRA_REPO/.env"
+              fi
+            else
+              echo "NEXT_PUBLIC_APP_VERSION=${NEXT_PUBLIC_APP_VERSION}" > "$INFRA_REPO/.env"
+            fi
+            NEXT_PUBLIC_APP_VERSION="${NEXT_PUBLIC_APP_VERSION}" docker compose build --pull web
+            # Tag latest only for releases to keep production aligned to stable versions.
+            if [ "${GITHUB_REF_TYPE}" = "tag" ]; then
+              docker tag "solvex-web:${WEB_IMAGE_TAG}" "solvex-web:latest"
+            fi
+            NEXT_PUBLIC_APP_VERSION="${NEXT_PUBLIC_APP_VERSION}" docker compose up -d --force-recreate web
