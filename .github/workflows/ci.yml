@@ -36,10 +36,10 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          envs: GITHUB_SHA,GITHUB_REF_NAME,GITHUB_REF_TYPE
+          envs: GITHUB_SHA,GITHUB_REF_NAME,GITHUB_REF_TYPE,MONOREPO_PATH
           script: |
             set -e
-            MONOREPO=/home/solvex/solvex
+            MONOREPO=${MONOREPO_PATH:-/home/solvex/solvex}
             WEB_DIR="$MONOREPO/apps/web"
             INFRA_DIR="$MONOREPO/infra"
             if [ ! -d "$MONOREPO/.git" ]; then
