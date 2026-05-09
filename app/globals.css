@@ -10,6 +10,35 @@
   --accent-strong: #a94920;
   --mint: #0f766e;
   --shadow: 0 20px 60px -35px rgba(37, 32, 26, 0.35);
+
+  /* Education redesign tokens (DESIGN_SPEC v1.0) */
+  --edu-bg: #08090A;
+  --edu-bg-2: #0E0F11;
+  --edu-bg-3: #16181B;
+  --edu-line: #1F2125;
+  --edu-line-2: #2A2D32;
+  --edu-ink: #F5F5F7;
+  --edu-ink-2: #A8AAB1;
+  --edu-ink-3: #6E7079;
+  --edu-accent: #5DCAA5;
+  --edu-accent-2: #1D9E75;
+  --edu-accent-ink: #04342C;
+  --edu-light: #FBF8F3;
+  --edu-light-2: #F2EEE5;
+  --edu-light-line: #E5DFD0;
+  --edu-light-ink: #1A1815;
+  --edu-light-ink-2: #5C594F;
+  --edu-light-ink-3: #8A8678;
+  --edu-warm: #F0E6D2;
+  --edu-warm-ink: #854F0B;
+  --edu-danger: #E24B4A;
+  --edu-danger-ink: #F09595;
+  --edu-warning: #EF9F27;
+  --edu-warning-ink: #FAC775;
+  --edu-bad-bg: #FBEAF0;
+  --edu-bad-ink: #791F1F;
+  --edu-good-bg: #E1F5EE;
+  --edu-good-ink: #085041;
 }
 
 @theme inline {
@@ -17,6 +46,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-space-grotesk);
   --font-mono: var(--font-plex-mono);
+  --font-display: var(--font-geist), -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: var(--font-instrument-serif), Georgia, serif;
+  --font-edu-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -118,4 +150,53 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Education redesign helpers */
+.edu-grid-bg {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, black 30%, transparent 75%);
+          mask-image: radial-gradient(ellipse 60% 50% at 50% 30%, black 30%, transparent 75%);
+}
+
+.edu-pulse-dot {
+  box-shadow: 0 0 10px var(--edu-accent);
+}
+
+@keyframes eduFade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.edu-fade-in {
+  animation: eduFade 0.3s ease;
+}
+
+@keyframes eduPulseSoft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.edu-pulse-soft {
+  animation: eduPulseSoft 1.6s ease-in-out infinite;
+}
+
+.edu-no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.edu-no-scrollbar {
+  scrollbar-width: none;
 }
