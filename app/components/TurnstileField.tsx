@@ -21,14 +21,20 @@ const SCRIPT_ID = "turnstile-api";
 const SCRIPT_SRC = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
 
 export function TurnstileField({ siteKey, resetSignal }: TurnstileFieldProps) {
-  const [token, setToken] = useState("");
-  const [resolvedKey, setResolvedKey] = useState<string | null>(siteKey ?? null);
+  const [fetchedKey, setFetchedKey] = useState<string | null>(null);
+  const resolvedKey = siteKey ?? fetchedKey;
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const widgetIdRef = useRef<string | null>(null);
 
+  const writeToken = (value: string) => {
+    if (inputRef.current) {
+      inputRef.current.value = value;
+    }
+  };
+
   useEffect(() => {
     if (siteKey) {
-      setResolvedKey(siteKey);
       return;
     }
     let mounted = true;
@@ -38,11 +44,11 @@ export function TurnstileField({ siteKey, resetSignal }: TurnstileFieldProps) {
         if (!mounted) {
           return;
         }
-        setResolvedKey(typeof data?.turnstileSiteKey === "string" ? data.turnstileSiteKey : null);
+        setFetchedKey(typeof data?.turnstileSiteKey === "string" ? data.turnstileSiteKey : null);
       })
       .catch(() => {
         if (mounted) {
-          setResolvedKey(null);
+          setFetchedKey(null);
         }
       });
     return () => {
@@ -66,8 +72,8 @@ export function TurnstileField({ siteKey, resetSignal }: TurnstileFieldProps) {
       }
       widgetIdRef.current = window.turnstile.render(containerRef.current, {
         sitekey: resolvedKey,
-        callback: (value: string) => setToken(value),
-        "expired-callback": () => setToken(""),
+        callback: (value: string) => writeToken(value),
+        "expired-callback": () => writeToken(""),
       });
     };
 
@@ -110,7 +116,7 @@ export function TurnstileField({ siteKey, resetSignal }: TurnstileFieldProps) {
       window.turnstile.remove(widgetIdRef.current);
       widgetIdRef.current = null;
     }
-    setToken("");
+    writeToken("");
   }, [resetSignal]);
 
   if (!resolvedKey) {
@@ -119,7 +125,7 @@ export function TurnstileField({ siteKey, resetSignal }: TurnstileFieldProps) {
 
   return (
     <>
-      <input type="hidden" name="turnstileToken" value={token} />
+      <input ref={inputRef} type="hidden" name="turnstileToken" defaultValue="" />
       <div ref={containerRef} />
     </>
   );
