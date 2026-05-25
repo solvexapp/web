@@ -8,6 +8,8 @@ const FOOTER_LINKS = [
   { href: "/#casos", label: "Casos" },
   { href: "/#faq", label: "FAQ" },
   { href: "/#contacto", label: "Contacto" },
+  { href: "/legal/privacidad", label: "Privacidad" },
+  { href: "/legal/condiciones", label: "Condiciones" },
 ];
 
 export function Footer() {
